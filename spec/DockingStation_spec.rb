@@ -27,11 +27,8 @@ describe DockingStation do
   end
 
   it "Raises error when a user tries to check a bike into a full dock" do
-    full_dock = DockingStation.new
-    (0..11).each do |bike|
-      full_dock.dock << "Bike"
-    end
-    expect { full_dock.dock_bike }.to raise_error("The dock is full") if full_dock.dock.count >= 10
+    20.times { subject.dock << Bike.new }
+    expect { subject.dock_bike }.to raise_error("The dock is full") if subject.dock.count >= 20
   end
 
 end

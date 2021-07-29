@@ -1,6 +1,5 @@
 require "./lib/Bike"
 
-
 class DockingStation
 	attr_reader :dock
 	def initialize
@@ -13,7 +12,7 @@ class DockingStation
 	end
 
 	def dock_bike
-		raise "The dock is full" if dock.count >= 10
+		raise "The dock is full" if dock.count >= 20
 		@dock.push(Bike.new)
 	end
 
