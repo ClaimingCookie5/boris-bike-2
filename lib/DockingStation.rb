@@ -13,6 +13,7 @@ class DockingStation
 	end
 
 	def dock_bike
+		raise "The dock is full" if dock.count >= 10
 		@dock.push(Bike.new)
 	end
 
