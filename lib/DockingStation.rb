@@ -7,21 +7,28 @@ class DockingStation
 	end
 
 	def release_bike
-		raise "The dock is empty" if dock.empty?
+		raise "The dock is empty" if empty?
 		Bike.new
 	end
 
 	def dock_bike
-		raise "The dock is full" if dock.count >= 20
+		raise "The dock is full" if full?
 		@dock.push(Bike.new)
 	end
 
 	def check
-		if dock.empty?
-			puts "No bikes, sorry"
-		else
-			dock
-		end
+		"No bikes, sorry" if empty?
+		dock
+	end
+
+	private
+	
+	def full?
+		dock.count >= 20 ? true : false
+	end
+
+	def empty?
+		dock.empty? ? true : false
 	end
 
 end
