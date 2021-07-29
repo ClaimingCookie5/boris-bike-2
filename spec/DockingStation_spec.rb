@@ -1,7 +1,10 @@
 require "DockingStation"
 
 describe DockingStation do
-  
+
+  before do
+    DEFAULT_CAPACITY = 20 
+  end
 
   describe "Test if DockingStation responds to release_bike" do
     it { is_expected.to respond_to(:release_bike) }
@@ -27,8 +30,8 @@ describe DockingStation do
   end
 
   it "Raises error when a user tries to check a bike into a full dock" do
-    20.times { subject.dock << Bike.new }
-    expect { subject.dock_bike }.to raise_error("The dock is full") if subject.dock.count >= 20
+    DEFAULT_CAPACITY+1.times { subject.dock << Bike.new }
+    expect { subject.dock_bike }.to raise_error("The dock is full") if subject.dock.count >= DEFAULT_CAPACITY
   end
 
 end

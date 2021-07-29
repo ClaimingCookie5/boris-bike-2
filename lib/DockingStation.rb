@@ -2,7 +2,10 @@ require "./lib/Bike"
 
 class DockingStation
 	attr_reader :dock
-	def initialize
+    #DEFAULT_CAPACITY = 20
+
+	def initialize(constant = 20)
+		self.class.const_set(:DEFAULT_CAPACITY, constant)
 		@dock = []
 	end
 
@@ -24,7 +27,7 @@ class DockingStation
 	private
 	
 	def full?
-		dock.count >= 20 ? true : false
+		dock.count >= DEFAULT_CAPACITY ? true : false
 	end
 
 	def empty?
