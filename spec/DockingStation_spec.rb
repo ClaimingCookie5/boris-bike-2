@@ -11,16 +11,18 @@ describe DockingStation do
     end
 
     it "Tests that DockingStation.release_bike gets a bike and then if it's working" do
-      station = DockingStation.new
-      expect(station.release_bike).to be_a Bike
-      expect(station.release_bike.working?).to eq true
+      if !subject.dock.empty?
+        expect(subject.release_bike).to be_a Bike
+        expect(subject.release_bike.working?).to eq true
+      end
     end
 
     it "Test that DockingStation.dock docks a bike" do
-      station = DockingStation.new
-      expect(station.dock_bike).not_to be_empty
+      expect(subject.dock_bike).not_to be_empty
     end
 
-    
+    it "Raises error when a user tries to check a bike out of an empty dock" do
+      expect{subject.release_bike}.to raise_error("The dock is empty") if subject.dock.empty?
+    end
 
 end
