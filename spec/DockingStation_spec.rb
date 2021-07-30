@@ -11,10 +11,9 @@ describe DockingStation do
   end
 
   it "Tests that DockingStation.release_bike gets a bike and then if it's working" do
-    if !subject.dock_bike.empty?
-      expect(subject.release_bike).to be_a Bike
-      expect(subject.release_bike.working?).to be_truthy
-    end
+    subject.dock_bike
+    expect(subject.release_bike).to be_a Bike
+    expect(subject.release_bike.working?).to be_truthy
   end
 
   it "Test that DockingStation.dock docks a bike" do
@@ -33,5 +32,6 @@ describe DockingStation do
   it "allows system admin to set capacity of docking station" do
     expect( DockingStation.new(3).capacity ).to eq 3
   end
+
 
 end
